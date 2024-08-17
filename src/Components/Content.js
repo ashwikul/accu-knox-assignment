@@ -1,6 +1,10 @@
+import Headers from "./Headers"
 const Content = () => {
   return (
-    <div >This is content</div>
+    <div className="bg-blue-50 py-5 px-10">
+      <Headers />
+      this is category
+    </div>
   )
 }
 

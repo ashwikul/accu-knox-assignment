@@ -1,10 +1,10 @@
 import React from 'react';
-import Headers from './Headers';
+import NavBar from './NavBar';
 import Content from './Content';
 const Dashboard = () => {
   return (
-    <div >
-      <Headers />
+    <div className='flex flex-col space-y-1'>
+      <NavBar />
       <Content />
     </div>
   );
