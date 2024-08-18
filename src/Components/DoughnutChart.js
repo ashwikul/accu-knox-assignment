@@ -7,7 +7,7 @@ const DoughnutChart = ({ widgetDetails }) => {
 
 
   const chartData = {
-    labels: widgetDetails?.data?.map((d) => d.status),
+    labels: widgetDetails?.data?.map((d) => `${d.status} (${d.count})`),
     datasets: [{
       label: 'My First Dataset',
       data: widgetDetails?.data?.map((d) => d.count),

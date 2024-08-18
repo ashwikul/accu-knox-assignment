@@ -71,6 +71,37 @@
           "data": []
         }
       ]
+    },
+    {
+      "id": "images",
+      "name": "Images",
+      "title": "Registry Scan",
+      "widgets": [
+        {
+          "type": "stackedChart",
+          "id": "image_risk_assessment",
+          "title": "Image Risk Assessment",
+          "data": [
+            {
+              "status": "Critical",
+              "count": "9"
+            },
+            {
+              "status": "High",
+              "count": "150"
+            },
+            {
+              "status": "Low",
+              "count": "300"
+            }
+          ],
+          "backgroundColor": [
+            "#870907",
+            "#f5813d",
+            "#f29e16"
+          ]
+        }
+      ]
     }
   ]
 }

@@ -1,5 +1,6 @@
 import dashboardData from "../dashboardData.json";
 import DoughnutChart from "./DoughnutChart";
+import StackedChart from "./StackedChart";
 import { VscGraph } from "react-icons/vsc";
 
 
@@ -7,11 +8,28 @@ const Widget = ({ widgetId, categoryId }) => {
 
   const widgetDetails = dashboardData.categories.find((category) => category.id === categoryId)?.widgets.find((widget) => widget.id === widgetId);
 
+  const transformData = (widget) => {
+    return widget.data.map((item, index) => ({
+      label: item.status, // Status as the label
+      value: parseInt(item.count, 10), // Parse count as integer for the value
+      color: widget.backgroundColor[index], // Match the color to the corresponding data
+    }));
+  };
+
   const renderWidget = (type) => {
+    let segments;
+    if (type === "stackedChart") {
+      segments = transformData(widgetDetails); // Transform the data for the chart
+    }
 
     switch (type) {
       case 'doughnut':
-        return <DoughnutChart widgetDetails={widgetDetails} />
+        return <DoughnutChart widgetDetails={widgetDetails} />;
+
+      case 'stackedChart':
+        // return <StackedChart widgetDetails={widgetDetails} />;
+
+        return <StackedChart segments={segments} />;
       default:
         return null;
     }
