@@ -3,8 +3,11 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Dashboard from './Components/Dashboard';
-import Home from './Components/Home';
+import Dashboard from './components/Dashboard';
+import Home from './components/Home';
+import { useEffect, useState } from 'react';
+import WidgetContext from './context/WidgetContext';
+import dashboardData from "./dashboardData.json";
 
 
 const router = createBrowserRouter([
@@ -18,8 +21,27 @@ const router = createBrowserRouter([
   }
 ]);
 function App() {
+
+  const [isDrawerActive, setIsDrawerActive] = useState(false);
+  const [activeWidgets, setActiveWidgets] = useState({});
+
+  useEffect(() => {
+    const initialWidgets = {};
+    dashboardData.categories.forEach(category => {
+      initialWidgets[category.id] = [];
+    })
+    setActiveWidgets(initialWidgets);
+  }, []);
+
+
+  console.log("activeWidgets", activeWidgets);
+
+
   return (
-    <RouterProvider router={router} />);
+    <WidgetContext.Provider value={{ isDrawerActive, setIsDrawerActive, activeWidgets, setActiveWidgets }}>
+      <RouterProvider router={router} />
+    </WidgetContext.Provider>
+  );
 }
 
 export default App;

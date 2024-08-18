@@ -1,0 +1,64 @@
+{
+  "categories": [
+    {
+      "id": "cspm",
+      "name": "CSPM",
+      "title": "CSPM Executive Dashboard",
+      "widgets": [
+        {
+          "type": "cloud_accounts",
+          "title": "Cloud Accounts",
+          "data": [
+            {
+              "status": "Connected",
+              "count": "2"
+            },
+            {
+              "status": "Not connected",
+              "count": "0"
+            }
+          ]
+        },
+        {
+          "type": "cloud_account_risk_assessment",
+          "title": "Cloud Account Risk Assessment",
+          "data": [
+            {
+              "status": "Failed",
+              "count": "1689"
+            },
+            {
+              "status": "Warning",
+              "count": "681"
+            },
+            {
+              "status": "Not available",
+              "count": "36"
+            },
+            {
+              "status": "Passed",
+              "count": "7253"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cwpp",
+      "name": "CWPP",
+      "title": "CWPP Dashboard",
+      "widgets": [
+        {
+          "type": "top_5_namespace_alert",
+          "title": "Top 5 Namespace Specific Alerts",
+          "data": []
+        },
+        {
+          "type": "workload_alerts",
+          "title": "Workload Alerts",
+          "data": []
+        }
+      ]
+    }
+  ]
+}
