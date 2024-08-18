@@ -24,6 +24,7 @@ function App() {
 
   const [isDrawerActive, setIsDrawerActive] = useState(false);
   const [activeWidgets, setActiveWidgets] = useState({});
+  const [activeTab, setActiveTab] = useState('cspm');
 
   useEffect(() => {
     const initialWidgets = {};
@@ -38,7 +39,7 @@ function App() {
 
 
   return (
-    <WidgetContext.Provider value={{ isDrawerActive, setIsDrawerActive, activeWidgets, setActiveWidgets }}>
+    <WidgetContext.Provider value={{ isDrawerActive, setIsDrawerActive, activeWidgets, setActiveWidgets, activeTab, setActiveTab }}>
       <RouterProvider router={router} />
     </WidgetContext.Provider>
   );

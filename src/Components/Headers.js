@@ -9,14 +9,19 @@ import WidgetContext from "../context/WidgetContext";
 
 const Headers = () => {
 
-  const { setIsDrawerActive } = useContext(WidgetContext);
+  const { setIsDrawerActive, setActiveTab } = useContext(WidgetContext);
+
+  const handleAddWidget = () => {
+    setIsDrawerActive(true);
+    setActiveTab('cspm');
+  }
 
   return (
     <div className="flex justify-between items-start">
       <p className="font-bold">CNAPP Dashboard</p>
 
       <div className="flex space-x-2">
-        <button className="rounded-md bg-white px-2 py-1 border border-slate-300 text-slate-600" onClick={() => setIsDrawerActive(true)}>Add Widget +</button>
+        <button className="rounded-md bg-white px-2 py-1 border border-slate-300 text-slate-600" onClick={handleAddWidget}>Add Widget +</button>
         <button className="rounded-md bg-white p-2 border border-slate-300 text-slate-600"><FiRefreshCcw size={15} /> </button>
         <button className="rounded-md bg-white p-2 border border-slate-300 text-slate-600"><BsThreeDotsVertical size={15} /></button>
 

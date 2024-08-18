@@ -5,14 +5,16 @@ import EmptyWidget from "./EmptyWidget";
 
 const Category = ({ title, id }) => {
   const { activeWidgets } = useContext(WidgetContext);
+  console.log("activeWidgets in category", activeWidgets);
+
 
   return <div className="mb-4">
     <h1 className=" font-bold">{title}</h1>
     <div className="grid grid-cols-3 gap-3">
       {activeWidgets[id]?.map((widget) => (
-        <Widget key={widget} type={widget} categoryId={id} />
+        <Widget key={widget} widgetId={widget} categoryId={id} />
       ))}
-      <EmptyWidget />
+      <EmptyWidget categoryId={id} />
     </div>
 
   </div>

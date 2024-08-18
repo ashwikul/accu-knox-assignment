@@ -2,10 +2,9 @@ import Tabs from "./Tabs";
 import WidgetContext from "../context/WidgetContext";
 import { useContext, useEffect, useState } from "react";
 import TabContext from "../context/TabContext";
-import dashboardData from "../dashboardData.json";
 
 const Drawer = () => {
-  const [activeTab, setActiveTab] = useState('cspm');
+  // const [activeTab, setActiveTab] = useState('cspm');
   const [selectedWidgets, setSelectedWidgets] = useState({});
   const { setIsDrawerActive, activeWidgets, setActiveWidgets } = useContext(WidgetContext);
 
@@ -23,7 +22,7 @@ const Drawer = () => {
 
 
   return (
-    <TabContext.Provider value={{ activeTab, setActiveTab, selectedWidgets, setSelectedWidgets }}>
+    <TabContext.Provider value={{ selectedWidgets, setSelectedWidgets }}>
       <div
         className="fixed inset-0 bg-black bg-opacity-50"
 
