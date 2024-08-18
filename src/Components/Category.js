@@ -5,7 +5,6 @@ import EmptyWidget from "./EmptyWidget";
 
 const Category = ({ title, id }) => {
   const { activeWidgets } = useContext(WidgetContext);
-  console.log("activeWidgets in category", activeWidgets);
 
 
   return <div className="mb-4">

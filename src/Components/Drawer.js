@@ -17,6 +17,7 @@ const Drawer = () => {
   const handleSubmit = () => {
     setActiveWidgets(selectedWidgets);
     setSelectedWidgets({});
+    setIsDrawerActive(false);
   }
 
 

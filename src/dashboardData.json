@@ -6,7 +6,7 @@
       "title": "CSPM Executive Dashboard",
       "widgets": [
         {
-          "type": "Doughnut",
+          "type": "doughnut",
           "id": "cloud_accounts",
           "title": "Cloud Accounts",
           "data": [
@@ -25,7 +25,7 @@
           ]
         },
         {
-          "type": "Doughnut",
+          "type": "doughnut",
           "id": "cloud_account_risk_assessment",
           "title": "Cloud Account Risk Assessment",
           "data": [
