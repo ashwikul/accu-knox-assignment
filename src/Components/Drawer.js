@@ -5,8 +5,8 @@ import TabContext from "../context/TabContext";
 
 const Drawer = () => {
   // const [activeTab, setActiveTab] = useState('cspm');
-  const [selectedWidgets, setSelectedWidgets] = useState({});
-  const { setIsDrawerActive, activeWidgets, setActiveWidgets } = useContext(WidgetContext);
+  // const [selectedWidgets, setSelectedWidgets] = useState({});
+  const { setIsDrawerActive, activeWidgets, setActiveWidgets, selectedWidgets, setSelectedWidgets } = useContext(WidgetContext);
 
 
 
@@ -16,7 +16,7 @@ const Drawer = () => {
 
   const handleSubmit = () => {
     setActiveWidgets(selectedWidgets);
-    setSelectedWidgets({});
+    // setSelectedWidgets({});
     setIsDrawerActive(false);
   }
 

@@ -3,15 +3,15 @@ import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const DoughnutChart = ({ widgetDetails }) => {
+const DoughnutChart = ({ widget }) => {
 
 
   const chartData = {
-    labels: widgetDetails?.data?.map((d) => `${d.status} (${d.count})`),
+    labels: widget?.data?.map((d) => `${d.status} (${d.count})`),
     datasets: [{
       label: 'My First Dataset',
-      data: widgetDetails?.data?.map((d) => d.count),
-      backgroundColor: widgetDetails?.backgroundColor,
+      data: widget?.data?.map((d) => d.count),
+      backgroundColor: widget?.backgroundColor,
       hoverOffset: 4
     }]
   };

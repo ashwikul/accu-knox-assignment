@@ -24,23 +24,30 @@ function App() {
 
   const [isDrawerActive, setIsDrawerActive] = useState(false);
   const [activeWidgets, setActiveWidgets] = useState({});
+  const [selectedWidgets, setSelectedWidgets] = useState({});
   const [activeTab, setActiveTab] = useState('cspm');
+  const [fetchedData, setFetchedData] = useState(dashboardData);
+
+  console.log("initial activeTab", activeTab);
 
 
   useEffect(() => {
-    const initialWidgets = {};
-    dashboardData.categories.forEach(category => {
-      initialWidgets[category.id] = [];
+    let initialWidgets = {
+      categories: [],
+    };
+    fetchedData.categories.forEach(category => {
+      initialWidgets.categories.push({ ...category, widgets: [] });
     })
     setActiveWidgets(initialWidgets);
   }, []);
+
 
 
   console.log("activeWidgets", activeWidgets);
 
 
   return (
-    <WidgetContext.Provider value={{ isDrawerActive, setIsDrawerActive, activeWidgets, setActiveWidgets, activeTab, setActiveTab }}>
+    <WidgetContext.Provider value={{ isDrawerActive, setIsDrawerActive, activeWidgets, setActiveWidgets, activeTab, setActiveTab, fetchedData, selectedWidgets, setSelectedWidgets }}>
       <RouterProvider router={router} />
     </WidgetContext.Provider>
   );

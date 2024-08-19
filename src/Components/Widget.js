@@ -7,11 +7,11 @@ import TabContext from "../context/TabContext";
 import WidgetContext from "../context/WidgetContext";
 
 
-const Widget = ({ widgetId, categoryId }) => {
+const Widget = ({ widget, categoryId }) => {
 
   const { activeWidgets, setActiveWidgets } = useContext(WidgetContext);
 
-  const widgetDetails = dashboardData.categories.find((category) => category.id === categoryId)?.widgets.find((widget) => widget.id === widgetId);
+  // const widgetDetails = dashboardData.categories.find((category) => category.id === categoryId)?.widgets.find((widget) => widget.id === widgetId);
 
   const transformData = (widget) => {
     return widget.data.map((item, index) => ({
@@ -22,24 +22,23 @@ const Widget = ({ widgetId, categoryId }) => {
   };
 
 
-  const removeWidget = (widgetId, categoryId) => {
-    const updatedWidgets = { ...activeWidgets, [categoryId]: activeWidgets[categoryId].filter((w) => w !== widgetId) }
-    console.log("updatedWidgets", updatedWidgets);
-    setActiveWidgets(updatedWidgets);
+  const removeWidget = () => {
+    // const updatedWidgets = { ...activeWidgets, [categoryId]: activeWidgets[categoryId].filter((w) => w !== widgetId) }
+    // console.log("updatedWidgets", updatedWidgets);
+    // setActiveWidgets(updatedWidgets);
   }
 
   const renderWidget = (type) => {
     let segments;
     if (type === "stackedChart") {
-      segments = transformData(widgetDetails); // Transform the data for the chart
+      segments = transformData(widget); // Transform the data for the chart
     }
 
     switch (type) {
       case 'doughnut':
-        return <DoughnutChart widgetDetails={widgetDetails} />;
+        return <DoughnutChart widget={widget} />;
 
       case 'stackedChart':
-        // return <StackedChart widgetDetails={widgetDetails} />;
 
         return <StackedChart segments={segments} />;
       default:
@@ -50,10 +49,10 @@ const Widget = ({ widgetId, categoryId }) => {
   return (
     <div className="bg-white p-3 rounded-2xl h-60">
       <div className="flex justify-between">
-        <h3 className=" font-bold text-sm">{widgetDetails?.title}</h3>
-        <button className="text-slate-600" onClick={() => removeWidget(widgetId, categoryId)}>X</button>
+        <h3 className=" font-bold text-sm">{widget.title}</h3>
+        <button className="text-slate-600" onClick={() => removeWidget()}>X</button>
       </div>
-      {widgetDetails.data.length > 0 ? renderWidget(widgetDetails.type) : <div className="flex flex-col justify-center items-center h-full">
+      {widget?.data.length > 0 ? renderWidget(widget.type) : <div className="flex flex-col justify-center items-center h-full">
         <VscGraph size={70} color="rgba(180, 184, 186, 0.3)" />
         <p className="text-sm text-slate-600">No Graph data available!</p>
       </div>}
