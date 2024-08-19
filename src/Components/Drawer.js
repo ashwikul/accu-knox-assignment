@@ -29,9 +29,8 @@ const Drawer = () => {
 
       />
       <div className="bg-slate-100 h-screen absolute right-0 top-0 w-2/5 ">
-        <header className="flex justify-between items-center py-2 px-4 text-white"
-          style={{ backgroundColor: "#060466" }}
-        >
+        <header className="flex justify-between items-center py-2 px-4 text-white bg-blue-950">
+
           <p>Add Widget</p>
           <button
             onClick={() => setIsDrawerActive(false)}
@@ -50,7 +49,7 @@ const Drawer = () => {
           >
             Cancel
           </button>
-          <button className="rounded-md bg-white px-4 py-1 border border-slate-300 text-slate-600 text-sm" onClick={handleSubmit}>
+          <button className="rounded-md bg-blue-900 px-4 py-1 border border-slate-300 text-white text-sm" onClick={handleSubmit}>
             Confirm
           </button>
         </footer>
