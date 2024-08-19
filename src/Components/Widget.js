@@ -11,7 +11,6 @@ const Widget = ({ widget, categoryId }) => {
 
   const { activeWidgets, setActiveWidgets } = useContext(WidgetContext);
 
-  // const widgetDetails = dashboardData.categories.find((category) => category.id === categoryId)?.widgets.find((widget) => widget.id === widgetId);
 
   const transformData = (widget) => {
     return widget.data.map((item, index) => ({
@@ -22,10 +21,17 @@ const Widget = ({ widget, categoryId }) => {
   };
 
 
-  const removeWidget = () => {
-    // const updatedWidgets = { ...activeWidgets, [categoryId]: activeWidgets[categoryId].filter((w) => w !== widgetId) }
-    // console.log("updatedWidgets", updatedWidgets);
-    // setActiveWidgets(updatedWidgets);
+  const removeWidget = (widget, categoryId) => {
+
+    setActiveWidgets((prevActiveWidgets) => {
+      const category = prevActiveWidgets.categories.find((category) => category.id === categoryId);
+      const index = category.widgets.indexOf(widget);
+      if (index > -1) {
+        category.widgets.splice(index, 1);
+      }
+      return { ...prevActiveWidgets };
+    });
+
   }
 
   const renderWidget = (type) => {
@@ -50,7 +56,7 @@ const Widget = ({ widget, categoryId }) => {
     <div className="bg-white p-3 rounded-2xl h-60">
       <div className="flex justify-between">
         <h3 className=" font-bold text-sm">{widget.title}</h3>
-        <button className="text-slate-600" onClick={() => removeWidget()}>X</button>
+        <button className="text-slate-600" onClick={() => removeWidget(widget, categoryId)}>X</button>
       </div>
       {widget?.data.length > 0 ? renderWidget(widget.type) : <div className="flex flex-col justify-center items-center h-full">
         <VscGraph size={70} color="rgba(180, 184, 186, 0.3)" />
