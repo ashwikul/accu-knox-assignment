@@ -34,9 +34,7 @@ const DoughnutChart = ({ widgetDetails }) => {
     id: 'doughnutLabel',
     afterDraw(chart, args, options) {
       const { ctx, data } = chart;
-      console.log("data inside chart", data);
       const total = data.datasets[0].data.reduce((a, b) => parseInt(a) + parseInt(b), 0);
-      console.log("total", total);
       ctx.save();
       ctx.font = 'bold 18px Roboto';
       ctx.fillStyle = '#000';

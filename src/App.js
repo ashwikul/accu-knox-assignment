@@ -26,6 +26,7 @@ function App() {
   const [activeWidgets, setActiveWidgets] = useState({});
   const [activeTab, setActiveTab] = useState('cspm');
 
+
   useEffect(() => {
     const initialWidgets = {};
     dashboardData.categories.forEach(category => {
