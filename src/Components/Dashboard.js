@@ -8,18 +8,7 @@ const Dashboard = () => {
 
   const { isDrawerActive } = useContext(WidgetContext);
 
-  useEffect(() => {
-    if (isDrawerActive) {
-      document.body.style.overflow = 'hidden'; // Disable scrolling
-    } else {
-      document.body.style.overflow = 'auto'; // Re-enable scrolling
-    }
 
-    // Cleanup on component unmount
-    return () => {
-      document.body.style.overflow = 'auto'; // Re-enable scrolling
-    };
-  }, [isDrawerActive]);
 
   return (
     <div className='flex flex-col '>
