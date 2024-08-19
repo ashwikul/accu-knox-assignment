@@ -80,7 +80,7 @@
         {
           "type": "stackedChart",
           "id": "image_risk_assessment",
-          "title": "Image Risk Assessment",
+          "title": "Image Risk Assessment cloud",
           "data": [
             {
               "status": "Critical",

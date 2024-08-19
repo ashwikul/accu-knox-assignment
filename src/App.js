@@ -27,8 +27,9 @@ function App() {
   const [selectedWidgets, setSelectedWidgets] = useState({});
   const [activeTab, setActiveTab] = useState('cspm');
   const [fetchedData, setFetchedData] = useState(dashboardData);
-
-  console.log("initial activeTab", activeTab);
+  const [searchText, setSearchText] = useState("");
+  const [debouncedSearchText, setDebouncedSearchText] = useState(searchText);
+  const [suggestions, setSuggestions] = useState([]);
 
 
   useEffect(() => {
@@ -47,7 +48,7 @@ function App() {
 
 
   return (
-    <WidgetContext.Provider value={{ isDrawerActive, setIsDrawerActive, activeWidgets, setActiveWidgets, activeTab, setActiveTab, fetchedData, selectedWidgets, setSelectedWidgets }}>
+    <WidgetContext.Provider value={{ isDrawerActive, setIsDrawerActive, activeWidgets, setActiveWidgets, activeTab, setActiveTab, fetchedData, selectedWidgets, setSelectedWidgets, searchText, setSearchText, suggestions, setSuggestions, debouncedSearchText, setDebouncedSearchText }}>
       <RouterProvider router={router} />
     </WidgetContext.Provider>
   );
