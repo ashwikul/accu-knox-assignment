@@ -12,7 +12,7 @@ const Content = () => {
         <Category key={category.id} title={category.title} id={category.id} />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default Content
+export default Content;

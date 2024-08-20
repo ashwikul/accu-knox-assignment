@@ -6,11 +6,8 @@ import { useContext } from "react";
 import TabContext from "../context/TabContext";
 import WidgetContext from "../context/WidgetContext";
 
-
 const Widget = ({ widget, categoryId }) => {
-
   const { activeWidgets, setActiveWidgets } = useContext(WidgetContext);
-
 
   const transformData = (widget) => {
     return widget.data.map((item, index) => ({
@@ -20,19 +17,18 @@ const Widget = ({ widget, categoryId }) => {
     }));
   };
 
-
   const removeWidget = (widget, categoryId) => {
-
     setActiveWidgets((prevActiveWidgets) => {
-      const category = prevActiveWidgets.categories.find((category) => category.id === categoryId);
+      const category = prevActiveWidgets.categories.find(
+        (category) => category.id === categoryId
+      );
       const index = category.widgets.indexOf(widget);
       if (index > -1) {
         category.widgets.splice(index, 1);
       }
       return { ...prevActiveWidgets };
     });
-
-  }
+  };
 
   const renderWidget = (type) => {
     let segments;
@@ -41,11 +37,10 @@ const Widget = ({ widget, categoryId }) => {
     }
 
     switch (type) {
-      case 'doughnut':
+      case "doughnut":
         return <DoughnutChart widget={widget} />;
 
-      case 'stackedChart':
-
+      case "stackedChart":
         return <StackedChart segments={segments} />;
       default:
         return null;
@@ -56,14 +51,22 @@ const Widget = ({ widget, categoryId }) => {
     <div className="bg-white p-3 rounded-2xl h-60">
       <div className="flex justify-between">
         <h3 className=" font-bold text-sm">{widget.title}</h3>
-        <button className="text-slate-600" onClick={() => removeWidget(widget, categoryId)}>X</button>
+        <button
+          className="text-slate-600"
+          onClick={() => removeWidget(widget, categoryId)}
+        >
+          X
+        </button>
       </div>
-      {widget?.data.length > 0 ? renderWidget(widget.type) : <div className="flex flex-col justify-center items-center h-full">
-        <VscGraph size={70} color="rgba(180, 184, 186, 0.3)" />
-        <p className="text-sm text-slate-600">No Graph data available!</p>
-      </div>}
+      {widget?.data.length > 0 ? (
+        renderWidget(widget.type)
+      ) : (
+        <div className="flex flex-col justify-center items-center h-full">
+          <VscGraph size={70} color="rgba(180, 184, 186, 0.3)" />
+          <p className="text-sm text-slate-600">No Graph data available!</p>
+        </div>
+      )}
     </div>
-  )
-
-}
-export default Widget
+  );
+};
+export default Widget;
