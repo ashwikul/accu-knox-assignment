@@ -1,13 +1,11 @@
-import dashboardData from "../dashboardData.json";
 import DoughnutChart from "./DoughnutChart";
 import StackedChart from "./StackedChart";
 import { VscGraph } from "react-icons/vsc";
 import { useContext } from "react";
-import TabContext from "../context/TabContext";
 import WidgetContext from "../context/WidgetContext";
 
 const Widget = ({ widget, categoryId }) => {
-  const { activeWidgets, setActiveWidgets } = useContext(WidgetContext);
+  const { setActiveWidgets } = useContext(WidgetContext);
 
   const transformData = (widget) => {
     return widget.data.map((item, index) => ({

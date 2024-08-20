@@ -6,8 +6,6 @@ import EmptyWidget from "./EmptyWidget";
 const Category = ({ title, id }) => {
   const { activeWidgets } = useContext(WidgetContext);
 
-  console.log("activeWidgets", activeWidgets);
-
   return (
     <div className="mb-4">
       <h1 className=" font-bold">{title}</h1>

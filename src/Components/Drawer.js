@@ -1,6 +1,6 @@
 import Tabs from "./Tabs";
 import WidgetContext from "../context/WidgetContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import TabContext from "../context/TabContext";
 
 const Drawer = () => {
@@ -70,8 +70,6 @@ const Drawer = () => {
   }, [debouncedSearchText]);
 
   const handleSearchedWidget = (suggestion) => {
-    console.log("suggestion", suggestion);
-
     setSearchedWidget(suggestion);
     setSearchText("");
     setDebouncedSearchText("");
