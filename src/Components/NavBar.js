@@ -9,7 +9,7 @@ const NavBar = () => {
       <SearchBar />
       <RiAccountCircleFill size={25} color="gray" />
     </nav>
-  )
-}
+  );
+};
 
 export default NavBar;

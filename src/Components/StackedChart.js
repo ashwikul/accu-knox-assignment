@@ -1,5 +1,5 @@
-import React from 'react';
-import { Bar } from 'react-chartjs-2';
+import React from "react";
+import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,30 +8,33 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
+} from "chart.js";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-
-
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const StackedChart = ({ segments }) => {
   const data = {
-    labels: [''], // Single label for the progress bar
+    labels: [""], // Single label for the progress bar
     datasets: segments.map((segment, index) => ({
       label: `${segment.label}(${segment.value})`, // Segment label (optional)
       data: [segment.value], // Value of the segment
       backgroundColor: segment.color, // Segment color
       barThickness: 20, // Height of the progress bar
-      hoverOffset: 4
+      hoverOffset: 4,
     })),
-
   };
 
   const total = segments.reduce((sum, segment) => sum + segment.value, 0);
 
-
   const options = {
-    indexAxis: 'y', // Horizontal bar
+    indexAxis: "y", // Horizontal bar
     responsive: true,
     scales: {
       x: {
@@ -47,10 +50,10 @@ const StackedChart = ({ segments }) => {
     plugins: {
       legend: {
         display: true,
-        position: 'bottom',
+        position: "bottom",
         labels: {
           usePointStyle: true,
-          pointStyle: 'rectRounded',
+          pointStyle: "rectRounded",
         },
       },
       tooltip: {
@@ -66,4 +69,3 @@ const StackedChart = ({ segments }) => {
 };
 
 export default StackedChart;
-

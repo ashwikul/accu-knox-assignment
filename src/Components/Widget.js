@@ -1,17 +1,11 @@
-import dashboardData from "../dashboardData.json";
 import DoughnutChart from "./DoughnutChart";
 import StackedChart from "./StackedChart";
 import { VscGraph } from "react-icons/vsc";
 import { useContext } from "react";
-import TabContext from "../context/TabContext";
 import WidgetContext from "../context/WidgetContext";
 
-
-const Widget = ({ widgetId, categoryId }) => {
-
-  const { activeWidgets, setActiveWidgets } = useContext(WidgetContext);
-
-  const widgetDetails = dashboardData.categories.find((category) => category.id === categoryId)?.widgets.find((widget) => widget.id === widgetId);
+const Widget = ({ widget, categoryId }) => {
+  const { setActiveWidgets } = useContext(WidgetContext);
 
   const transformData = (widget) => {
     return widget.data.map((item, index) => ({
@@ -21,26 +15,30 @@ const Widget = ({ widgetId, categoryId }) => {
     }));
   };
 
-
-  const removeWidget = (widgetId, categoryId) => {
-    const updatedWidgets = { ...activeWidgets, [categoryId]: activeWidgets[categoryId].filter((w) => w !== widgetId) }
-    console.log("updatedWidgets", updatedWidgets);
-    setActiveWidgets(updatedWidgets);
-  }
+  const removeWidget = (widget, categoryId) => {
+    setActiveWidgets((prevActiveWidgets) => {
+      const category = prevActiveWidgets.categories.find(
+        (category) => category.id === categoryId
+      );
+      const index = category.widgets.indexOf(widget);
+      if (index > -1) {
+        category.widgets.splice(index, 1);
+      }
+      return { ...prevActiveWidgets };
+    });
+  };
 
   const renderWidget = (type) => {
     let segments;
     if (type === "stackedChart") {
-      segments = transformData(widgetDetails); // Transform the data for the chart
+      segments = transformData(widget); // Transform the data for the chart
     }
 
     switch (type) {
-      case 'doughnut':
-        return <DoughnutChart widgetDetails={widgetDetails} />;
+      case "doughnut":
+        return <DoughnutChart widget={widget} />;
 
-      case 'stackedChart':
-        // return <StackedChart widgetDetails={widgetDetails} />;
-
+      case "stackedChart":
         return <StackedChart segments={segments} />;
       default:
         return null;
@@ -50,15 +48,23 @@ const Widget = ({ widgetId, categoryId }) => {
   return (
     <div className="bg-white p-3 rounded-2xl h-60">
       <div className="flex justify-between">
-        <h3 className=" font-bold text-sm">{widgetDetails?.title}</h3>
-        <button className="text-slate-600" onClick={() => removeWidget(widgetId, categoryId)}>X</button>
+        <h3 className=" font-bold text-sm">{widget.title}</h3>
+        <button
+          className="text-slate-600"
+          onClick={() => removeWidget(widget, categoryId)}
+        >
+          X
+        </button>
       </div>
-      {widgetDetails.data.length > 0 ? renderWidget(widgetDetails.type) : <div className="flex flex-col justify-center items-center h-full">
-        <VscGraph size={70} color="rgba(180, 184, 186, 0.3)" />
-        <p className="text-sm text-slate-600">No Graph data available!</p>
-      </div>}
+      {widget?.data.length > 0 ? (
+        renderWidget(widget.type)
+      ) : (
+        <div className="flex flex-col justify-center items-center h-full">
+          <VscGraph size={70} color="rgba(180, 184, 186, 0.3)" />
+          <p className="text-sm text-slate-600">No Graph data available!</p>
+        </div>
+      )}
     </div>
-  )
-
-}
-export default Widget
+  );
+};
+export default Widget;

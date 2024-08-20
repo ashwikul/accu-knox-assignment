@@ -6,16 +6,18 @@ import EmptyWidget from "./EmptyWidget";
 const Category = ({ title, id }) => {
   const { activeWidgets } = useContext(WidgetContext);
 
-
-  return <div className="mb-4">
-    <h1 className=" font-bold">{title}</h1>
-    <div className="grid grid-cols-3 gap-3">
-      {activeWidgets[id]?.map((widget) => (
-        <Widget key={widget} widgetId={widget} categoryId={id} />
-      ))}
-      <EmptyWidget categoryId={id} />
+  return (
+    <div className="mb-4">
+      <h1 className=" font-bold">{title}</h1>
+      <div className="grid grid-cols-3 gap-3">
+        {activeWidgets.categories
+          ?.find((category) => category.id === id)
+          ?.widgets?.map((widget) => (
+            <Widget key={widget.id} widget={widget} categoryId={id} />
+          ))}
+        <EmptyWidget categoryId={id} />
+      </div>
     </div>
-
-  </div>
-}
+  );
+};
 export default Category;
